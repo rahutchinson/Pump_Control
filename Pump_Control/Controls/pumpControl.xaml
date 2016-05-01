@@ -31,6 +31,10 @@
                     <TextBlock Name="lbl_iterations"/>
                 </StackPanel>
             </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Status:  "/>
+                <TextBlock Name="lbl_status"/>
+            </StackPanel>
         </StackPanel>
 
     </Grid>

@@ -29,9 +29,9 @@
                         <TextBox Name="cycle_time_off" Width="50"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                        <TextBox Name="cycle_time_start_m" Width="50"/>
-                        <TextBox Name="cycle_time_on_m" Width="50"/>
-                        <TextBox Name="cycle_time_off_m" Width="50"/>
+                        <TextBox Name="cycle_time_start_h" Width="50"/>
+                        <TextBox Name="cycle_time_on_h" Width="50"/>
+                        <TextBox Name="cycle_time_off_h" Width="50"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

@@ -5,18 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pump_Control"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Pump Control V0.2" Height="350" Width="525">
     <Grid>
         <StackPanel>
-        <StackPanel Name="top_bar" Orientation="Horizontal" Height="20"  Margin="0,0,0,10">
-            <Button Name="btn_Add_Pump" Content="Add New Pump" Click="btn_Add_Pump_Click"/>
+            <StackPanel Name="top_bar" Orientation="Horizontal" Height="20"  Margin="0,0,0,10">
+                <Button Name="btn_Add_Pump" Content="Add New Pump" Click="btn_Add_Pump_Click"/>
                 <Button Name="btn_timeline_start" Content="START" Background="Green" HorizontalAlignment="Right" Margin="250,0,0,0" Click="btn_timeline_start_Click"/>
             </StackPanel>
-        <StackPanel Orientation="Horizontal" Name="pump_stack">
-            
-            
+            <StackPanel Orientation="Horizontal" Name="pump_stack">
+
+            </StackPanel>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal"  Visibility="Hidden" Name="stck_time">
+                    <TextBlock Text="Start Time: "/>
+                    <TextBlock Name="lbl_start_time" Text="" Margin="0,0,60,0"/>
+                    <TextBlock Text="Elapsed: "/>
+                    <TextBlock Name="lbl_elapsed"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Background="Red" HorizontalAlignment="Center" Width="500" TextAlignment="Center" Name="lbl_running"/>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
-        </StackPanel>
-        
+
     </Grid>
 </Window>

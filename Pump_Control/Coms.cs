@@ -1,10 +1,12 @@
-﻿using System;
+﻿//#define connected
+
+using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows;
 
 namespace Pump_Contorl
 {
@@ -12,10 +14,11 @@ namespace Pump_Contorl
     {
         public class Serial
         {
-            string comport = "COM4";
+            string comport;
             int baud = 4800;
             int flow = 0;
             int pump_num;
+            bool pump_stat;
 
 
 
@@ -25,7 +28,7 @@ namespace Pump_Contorl
 
             public Serial()
             {
-
+                Console.WriteLine("Initilized");
             }
 
             /// <summary>
@@ -37,6 +40,7 @@ namespace Pump_Contorl
                 comport = port_string(port);
                 this.flow = flow;
                 pump_num = num;
+#if connected
                 try
                 {
                     SerialPort port_ = new SerialPort(comport, baud, Parity.Odd, 7, StopBits.One);
@@ -51,7 +55,7 @@ namespace Pump_Contorl
                     port_.Write("P0" + pump_num + cr);
                     System.Threading.Thread.Sleep(130);
                     port_.Write(string.Format(message1));
-                    port_.Write("P0"+ pump_num + "R" + cr);
+                    port_.Write("P0" + pump_num + "R" + cr);
                     //end_config
 
 
@@ -59,9 +63,11 @@ namespace Pump_Contorl
                 }
                 catch (Exception e)
                 {
-                    
+
                 }
-                
+#else
+                Console.WriteLine("Initilized");
+#endif
             }
 
 
@@ -69,28 +75,46 @@ namespace Pump_Contorl
             public void pump_on()
             {
 
-                SerialPort port_ = new SerialPort(comport, baud, Parity.Odd, 7, StopBits.One);
-                System.Threading.Thread.Sleep(20);
-                port_.Open();
-                port_.Write(string.Format(message1));
-                port_.Write("P0"+ pump_num + "G0" + cr);
-                port_.Write(string.Format(message1));
-                port_.WriteLine("P0"+ pump_num + "S+" + flow + cr);
+                if (!pump_stat)
+#if connected
+                {
 
-                port_.Close();
+                    SerialPort port_ = new SerialPort(comport, baud, Parity.Odd, 7, StopBits.One);
+                    System.Threading.Thread.Sleep(20);
+                    port_.Open();
+                    port_.Write(string.Format(message1));
+                    port_.Write("P0" + pump_num + "G0" + cr);
+                    port_.Write(string.Format(message1));
+                    port_.WriteLine("P0" + pump_num + "S+" + flow + cr);
 
+                    port_.Close();
+                    pump_stat = true;
+                }
+#else
+                    Console.WriteLine("Pump On");
+                pump_stat = true;
+#endif                
 
-            }
+                }
 
 
             internal void pump_off()
             {
-                SerialPort port = new SerialPort(comport, baud, Parity.Odd, 7, StopBits.One);
-                port.Open();
-                port.Write(string.Format(message1));
-                port.WriteLine("P0"+ pump_num+"H" + cr);
+                if (pump_stat)
+#if connected
+                {
+                    SerialPort port = new SerialPort(comport, baud, Parity.Odd, 7, StopBits.One);
+                    port.Open();
+                    port.Write(string.Format(message1));
+                    port.WriteLine("P0" + pump_num + "H" + cr);
 
-                port.Close();
+                    port.Close();
+                    pump_stat = false;
+                }
+#else
+                    Console.WriteLine("Pump off");
+                pump_stat = false;
+#endif            
 
             }
             private string port_string(int port)

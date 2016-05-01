@@ -33,9 +33,10 @@ namespace Pump_Control.Controls
 
         private void btn_submit_Click(object sender, RoutedEventArgs e)
         {
-            int[] data = new int[6];
+            int[] data = new int[9];
             data[0] = Int32.Parse(cycle_time_start.Text.ToString()); data[1] = Int32.Parse(cycle_time_on.Text.ToString()); data[2] = Int32.Parse(cycle_time_off.Text.ToString());
-            data[3] = Int32.Parse(txt_flow.Text.ToString()); data[4] = Int32.Parse(txt_iter.Text.ToString()); data[5]= Int32.Parse(txt_port.Text.ToString());
+            data[3] = Int32.Parse(cycle_time_start_h.Text.ToString()); data[4] = Int32.Parse(cycle_time_on_h.Text.ToString()); data[5] = Int32.Parse(cycle_time_off_h.Text.ToString());
+            data[6] = Int32.Parse(txt_flow.Text.ToString()); data[7] = Int32.Parse(txt_iter.Text.ToString()); data[8]= Int32.Parse(txt_port.Text.ToString());
 
 
             mainInput.Pump_name = txt_name.Text.ToString();
