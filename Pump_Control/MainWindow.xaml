@@ -10,7 +10,7 @@
         <StackPanel>
         <StackPanel Name="top_bar" Orientation="Horizontal" Height="20"  Margin="0,0,0,10">
             <Button Name="btn_Add_Pump" Content="Add New Pump" Click="btn_Add_Pump_Click"/>
-                <Button Name="btn_timeline_start" Content="START" Background="Green" HorizontalAlignment="Right" Margin="250,0,0,0"/>
+                <Button Name="btn_timeline_start" Content="START" Background="Green" HorizontalAlignment="Right" Margin="250,0,0,0" Click="btn_timeline_start_Click"/>
             </StackPanel>
         <StackPanel Orientation="Horizontal" Name="pump_stack">
             

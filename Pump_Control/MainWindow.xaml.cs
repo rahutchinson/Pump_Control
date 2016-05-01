@@ -34,8 +34,16 @@ namespace Pump_Control
         private void btn_Add_Pump_Click(object sender, RoutedEventArgs e)
         {
             var pump = new pumpControl(this);
-
+            this.pumpList.Add(pump);
             this.pump_stack.Children.Add(pump);
+        }
+
+        private void btn_timeline_start_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(pumpControl p in pumpList)
+            {
+                p.Start();
+            }
         }
     }
 }
